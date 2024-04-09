@@ -19,7 +19,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build . -t <youracrname>.azurecr.io/myapp:${{ github.sha }}
+        docker build . -t oztestaks.azurecr.io/myapp:${{ github.sha }}
         az acr login --name oztestaks
         docker push oztestaks.azurecr.io/myapp:${{ github.sha }}
 
@@ -37,7 +37,7 @@ jobs:
           ./k8s/deployment.yml
           ./k8s/service.yml
         images: |
-          <youracrname>.azurecr.io/myapp:${{ github.sha }}
+          oztestaks.azurecr.io/myapp:${{ github.sha }}
         namespace: default
 
     - name: Scan for security vulnerabilities
