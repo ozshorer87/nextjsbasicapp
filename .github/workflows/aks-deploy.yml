@@ -39,6 +39,13 @@ jobs:
         images: |
           oztestaks.azurecr.io/myapp:${{ github.sha }}
         namespace: default
+        strategy: none
+        traffic-split-method: pod
+        baseline-and-canary-replicas: 0
+        percentage: 0
+        action: deploy
+        force: false
+        kubectl-override: kubectl --validate=false  # This is the critical line
 
     - name: Scan for security vulnerabilities
       uses: Azure/container-scan@v0
